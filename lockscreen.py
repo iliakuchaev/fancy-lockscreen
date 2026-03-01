@@ -37,7 +37,7 @@ DEFAULT_CONFIG = {
     "live_wallpaper": "",
     "live_wallpaper_enabled": False,
     "live_wallpaper_volume": 0.0,
-    # Interface language: "ru" or "en"
+    # Interface language: "ru" , "en" or "pt-br"
     "language": "ru",
     # Frosted glass blur
     "frosted_blur": True,
@@ -137,12 +137,46 @@ _STRINGS = {
         'hint_welcome':    '✓ Welcome!',
         'hint_wrong':      'Wrong password (attempt {})',
     },
+    'pt-br': {
+        # Clock / date
+        'days':   ['Segunda','Terça','Quarta','Quinta',
+                   'Sexta','Sábado','Domingo'],
+        'months': ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
+                   'Julho','Agosto','Setembro','Outubro','Novembro','Desembro'],
+        # Weather card
+        'weather_hdr':     'Clima hoje',
+        'weather_tomorrow':'Clima Amanhã',
+        'no_api_key':      'SEM CHAVE API',
+             'feels':           'sensação térmica',
+        'humidity':        'Unidade',
+        # Sysmon card
+        'sysmon_hdr':      'Sistema',
+        'top_procs':       'PRINCIPAIS PROCESSOS',
+        # Notifications card
+        'notif_hdr':       'Notificações',
+        'notif_empty':     'Sem novas notificações',
+        # Media card
+        'media_hdr':       'MEDIA',
+        'media_empty':     'Escolha um arquivo nas configurações',
+        # Spotify
+        'sp_not_running':  'O Spotify não está funcionando.',
+        # VSCodium
+        'vs_not_running':  'O VSCodium não está funcionando.',
+        'vs_no_project':   'Projeto não encontrado',
+        'vs_no_files':     'No files',
+        # Password
+        'pass_placeholder':'Digite a senha',
+        'hint_unlock':     'ENTRAR — DESBLOQUEAR',
+        'hint_checking':   'Verificando…',
+        'hint_welcome':    '✓ Welcome!',
+        'hint_wrong':      'Senha incorreta (tentativa {})',
+    },
 }
 
 def _t(cfg, key):
     """Return translated string for the language set in config."""
-    lang = cfg.get('language', 'ru')
-    strings = _STRINGS.get(lang, _STRINGS['ru'])
+    lang = cfg.get('language', 'en')
+    strings = _STRINGS.get(lang, _STRINGS['en'])
     return strings.get(key, _STRINGS['ru'].get(key, key))
 
 
@@ -180,7 +214,7 @@ _weather_tomorrow_cache = None
 _weather_tomorrow_cache_time = 0.0
 WEATHER_CACHE_TTL = 600
 
-def get_weather(api_key, city, lang='ru'):
+def get_weather(api_key, city, lang='en'):
     global _weather_cache, _weather_cache_time
     now = time.monotonic()
     if _weather_cache and (now - _weather_cache_time) < WEATHER_CACHE_TTL:
@@ -209,7 +243,7 @@ def get_weather(api_key, city, lang='ru'):
     except Exception:
         return _weather_cache
 
-def get_weather_tomorrow(api_key, city, lang='ru'):
+def get_weather_tomorrow(api_key, city, lang='en'):
     """Fetch tomorrow's weather forecast via 5-day/3h forecast API."""
     global _weather_tomorrow_cache, _weather_tomorrow_cache_time
     now = time.monotonic()

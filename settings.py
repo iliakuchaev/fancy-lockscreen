@@ -50,6 +50,7 @@ STRINGS = {
         'lang_row_sub':         'Выберите язык настроек',
         'lang_ru':              'Русский',
         'lang_en':              'English',
+        'lang_br':              'Brazil',
 
         'bg_group':             'Фон',
         'bg_static_title':      'Статичное изображение',
@@ -140,6 +141,7 @@ STRINGS = {
         'lang_row_sub':         'Choose the settings language',
         'lang_ru':              'Русский',
         'lang_en':              'English',
+        'lang_br':              'Brazil',
 
         'bg_group':             'Background',
         'bg_static_title':      'Static image',
@@ -217,6 +219,97 @@ STRINGS = {
         'filter_tod':           'Image — ',
         'tooltip_clear':        'Clear',
     },
+    'pt-br': {
+        'window_title':         'Fancy Lock Screen — Configurações',
+        'preview_btn':          '▶  Visualizar',
+
+        'days':   ['SEGUNDA-FEIRA','TERÇA-FEIRA','QUARTA-FEIRA','QUINTA-FEIRA','SEXTA-FEIRA','SÁBADO','DOMINGO'],
+        'months': ['JANEIRO','FEVEREIRO','MARÇO','ABRIL','MAIO','JUNHO',
+                   'JULHO','AGOSTO','SETEMBRO','OUTUBRO','NOVEMBRO','DEZEMBRO'],
+
+        'lang_group':           'Idioma',
+        'lang_row_title':       'Idioma da interface',
+        'lang_row_sub':         'Escolha o idioma das configurações',
+        'lang_ru':              'Russo',
+        'lang_en':              'Inglês',
+        'lang_br':              'Brasileiro',
+
+        'bg_group':             'Plano de fundo',
+        'bg_static_title':      'Imagem estática',
+        'bg_static_sub':        'JPG, PNG, WebP — deixe vazio para fundo preto',
+        'choose':               'Escolher…',
+        'dim_title':            'Escurecimento',
+        'dim_sub':              '0% — sem escurecimento, 100% — totalmente preto',
+
+        'live_group':           'Papel de parede animado (vídeo / GIF)',
+        'live_enable_title':    'Ativar papel de parede animado',
+        'live_enable_sub':      'Requer GStreamer (gir1.2-gst-plugins-base-1.0)',
+        'live_file_title':      'Arquivo de vídeo / GIF',
+        'live_file_sub':        'MP4, WebM, MKV, GIF…',
+        'live_vol_title':       'Volume',
+        'live_vol_sub':         '0% — mudo, 100% — volume máximo',
+
+        'tod_group':            'Plano de fundo por horário',
+        'tod_enable_title':     'Alterar plano de fundo conforme o horário',
+        'tod_enable_sub':       'Substitui o plano de fundo estático. O escurecimento é definido automaticamente.',
+        'tod_morning':          'Manhã (06:00–11:59)',
+        'tod_day':              'Tarde (12:00–17:59)',
+        'tod_evening':          'Noite (18:00–21:59)',
+        'tod_night':            'Madrugada (22:00–05:59)',
+
+        'fx_group':             'Efeitos',
+        'blur_title':           'Vidro fosco (desfoque sob os cartões)',
+        'blur_sub':             'Desfoque Cairo — pode reduzir levemente o desempenho',
+
+        'w_group':              'Widgets — ativar / desativar',
+        'w_spotify_title':      'Spotify',
+        'w_spotify_sub':        'Faixa atual via MPRIS DBus',
+        'w_vscodium_title':     'VSCodium',
+        'w_vscodium_sub':       'Último arquivo modificado',
+        'w_sysmon_title':       'Monitor do sistema',
+        'w_sysmon_sub':         'CPU e RAM de /proc',
+        'w_notif_title':        'Notificações',
+        'w_notif_sub':          'Interceptadas via DBus',
+        'w_weather_title':      'Clima',
+        'w_weather_sub':        'API do OpenWeatherMap',
+        'w_media_title':        'Widget de mídia',
+        'w_media_sub':          'GIF, WebM, MP4 e outros formatos',
+        'w_vscode_path_title':  'Pasta do projeto VSCodium',
+        'w_vscode_path_sub':    'Vazio = detectar automaticamente pelo histórico',
+        'w_vscode_placeholder': 'Detectar automaticamente',
+
+        'media_group':          'Widget de mídia',
+        'media_file_title':     'Arquivo do widget de mídia',
+        'media_file_sub':       'GIF, WebM, MP4, MKV, AVI, MOV…',
+
+        'weather_group':        'Clima — OpenWeatherMap',
+        'weather_api_title':    'Chave da API',
+        'weather_api_sub':      'Gratuita em openweathermap.org → API keys',
+        'weather_api_ph':       'Cole a chave da API…',
+        'weather_city_title':   'Cidade',
+        'weather_city_sub':     'Ex.: São Paulo, Rio de Janeiro, Lisboa',
+        'weather_test_btn':     'Testar',
+        'weather_toast_no_key': 'Por favor, insira uma chave de API!',
+        'weather_toast_err':    'Erro: ',
+
+        'sys_group':            'Integração com o sistema',
+        'install_title':        'Definir como tela de bloqueio do sistema',
+        'install_sub':          'Substitui a tela de bloqueio padrão do GNOME',
+        'install_btn':          'Instalar',
+        'uninstall_btn':        'Desativar',
+        'toast_installed':      'Instalado! Faça logout e login novamente para ativar.',
+        'toast_uninstalled':    'Tela de bloqueio padrão restaurada.',
+
+        'dialog_bg':            'Imagem de plano de fundo',
+        'dialog_live':          'Arquivo do papel de parede animado',
+        'dialog_media':         'Arquivo do widget de mídia',
+        'dialog_folder':        'Pasta do projeto VSCodium',
+        'filter_images':        'Imagens',
+        'filter_video':         'Vídeo / GIF',
+        'filter_media':         'Mídia (GIF, vídeo)',
+        'filter_tod':           'Imagem — ',
+        'tooltip_clear':        'Limpar',
+    },
 }
 
 
@@ -225,7 +318,7 @@ class SettingsWindow(Adw.ApplicationWindow):
     def __init__(self, app):
         super().__init__(application=app)
         self.config = load_config()
-        self._lang = self.config.get('language', 'ru')
+        self._lang = self.config.get('language', 'en')
         self.set_default_size(620, 860)
         self.set_resizable(True)
         self._apply_css()
@@ -233,7 +326,7 @@ class SettingsWindow(Adw.ApplicationWindow):
 
     def _t(self, key):
         """Return translated string for current language."""
-        return STRINGS[self._lang].get(key, STRINGS['ru'].get(key, key))
+        return STRINGS[self._lang].get(key, STRINGS['en'].get(key, key))
 
     def _apply_css(self):
         prov = Gtk.CssProvider()
@@ -295,15 +388,18 @@ class SettingsWindow(Adw.ApplicationWindow):
 
         self._btn_ru = Gtk.ToggleButton(label=self._t('lang_ru'))
         self._btn_en = Gtk.ToggleButton(label=self._t('lang_en'),
-                                         group=self._btn_ru)
+        self._btn_br = Gtk.ToggleButton(label=self._t('lang_pt-br'),
+                                         group=self._btn_en)
         if self._lang == 'en':
             self._btn_en.set_active(True)
         else:
             self._btn_ru.set_active(True)
         self._btn_ru.connect('toggled', self._on_lang_toggled)
         self._btn_en.connect('toggled', self._on_lang_toggled)
+        self._btn_br.connect('toggled', self._on_lang_toggled)
         lang_box.append(self._btn_ru)
         lang_box.append(self._btn_en)
+        lang_box.append(self._btn_br)
 
         bg_group = Adw.PreferencesGroup(title=self._t('bg_group'))
         box.append(bg_group)
